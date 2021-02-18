@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -23,18 +24,20 @@ public class CountryResource {
     private CountryManager countryManager;
 
     @GET
-    @Produces({MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     public List<CountryDto> getAll() {
         return countryManager.getAll();
     }
 
     @GET
     @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     public CountryDto get(@PathParam("id") Long id) {
         return countryManager.get(id);
     }
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response create(CountryDto countryDto) {
         try {
             Long id = countryManager.save(countryDto);
