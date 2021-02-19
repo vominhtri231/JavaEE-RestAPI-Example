@@ -14,7 +14,7 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
+            <version>${javaee.version}</version>
             <scope>provided</scope>
 
             <exclusions>
@@ -28,7 +28,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.11</version>
+            <version>${apache-commons.version}</version>
         </dependency>
     </dependencies>
 
@@ -37,7 +37,26 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>${maven-war.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway.version}</version>
+                <configuration>
+                    <locations>
+                        <location>classpath:db/migration</location>
+                    </locations>
+                </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>com.oracle.jdbc</groupId>
+                        <artifactId>ojdbc8</artifactId>
+                        <version>${oracle-jdbc.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
@@ -45,5 +64,12 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+
+        <javaee.version>7.0</javaee.version>
+        <apache-commons.version>3.11</apache-commons.version>
+
+        <maven-war.version>3.3.0</maven-war.version>
+        <flyway.version>7.3.1</flyway.version>
+        <oracle-jdbc.version>12.2.0.1</oracle-jdbc.version>
     </properties>
 </project>

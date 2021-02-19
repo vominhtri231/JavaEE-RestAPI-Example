@@ -15,10 +15,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class Country {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", length = 100, nullable = false)
     private String name;
 
     public Long getId() {
